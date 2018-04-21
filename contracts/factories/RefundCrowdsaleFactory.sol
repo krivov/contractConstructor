@@ -3,6 +3,7 @@ pragma solidity ^0.4.21;
 import "./../tokens/ERC20MintableToken.sol";
 import "./../MainFabric.sol";
 import "./BaseFactory.sol";
+import "./../crowdsale/RefundCrowdsale.sol";
 
 contract RefundCrowdsaleFactory is BaseFactory {
 
@@ -104,10 +105,9 @@ contract RefundCrowdsaleFactory is BaseFactory {
             _closingTime
         );
 
-   
         MainFabric fabric = MainFabric(mainFabricAddress);
-        fabric.addContract(address(newContract), msg.sender, title);
+        fabric.addContract(address(newCrowdsale), msg.sender, title);
 
-        return newContract;
+        return newCrowdsale;
     }
 }
