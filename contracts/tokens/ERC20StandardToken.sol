@@ -13,6 +13,8 @@ contract ERC20StandardToken is StandardToken {
         symbol = _symbol;
         decimals = _decimals;
 
+        owner = _owner;
+
         totalSupply_ = _totalSupply;
         balances[_owner] = _totalSupply;
         Transfer(0x0, _owner, _totalSupply);

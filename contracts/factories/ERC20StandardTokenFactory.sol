@@ -7,7 +7,7 @@ import "./BaseFactory.sol";
 contract ERC20StandardTokenFactory is BaseFactory {
 
     function ERC20StandardTokenFactory(address _mainFactory) public {
-        require(_mainFactory != 0x0);
+        require(_mainFactory != 0x0);x
         mainFabricAddress = _mainFactory;
 
         title = "ERC20StandardToken";
