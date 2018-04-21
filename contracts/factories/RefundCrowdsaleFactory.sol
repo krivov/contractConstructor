@@ -106,6 +106,7 @@ contract RefundCrowdsaleFactory is BaseFactory {
         );
 
         MainFabric fabric = MainFabric(mainFabricAddress);
+        fabric.addContract(address(newToken), msg.sender, 'ERC20MintableToken');
         fabric.addContract(address(newCrowdsale), msg.sender, title);
 
         return newCrowdsale;
