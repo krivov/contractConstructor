@@ -33,8 +33,6 @@ contract BaseFactory {
         );
     }
 
-    function create(string[] _params) public;
-
     function parseAddr(string _a) internal returns (address){
         bytes memory tmp = bytes(_a);
         uint160 iaddr = 0;
