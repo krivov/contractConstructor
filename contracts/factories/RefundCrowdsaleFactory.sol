@@ -29,7 +29,6 @@ contract RefundCrowdsaleFactory is BaseFactory {
             paramType: "uint8"
         }));
 
-
         params.push(Parameter({
             title: "Token Rate",
             paramType: "uint256"
@@ -37,11 +36,6 @@ contract RefundCrowdsaleFactory is BaseFactory {
 
         params.push(Parameter({
             title: "Wallet",
-            paramType: "address"
-        }));
-
-        params.push(Parameter({
-            title: "ERC20 Token Address",
             paramType: "address"
         }));
 
@@ -61,18 +55,15 @@ contract RefundCrowdsaleFactory is BaseFactory {
         }));
 
         params.push(Parameter({
-            title: "OpeningTime",
+            title: "Opening time",
             paramType: "uint256"
         }));
 
         params.push(Parameter({
-            title: "ClosingTime",
+            title: "Closing time",
             paramType: "uint256"
         }));
-
-
     }
-
    
     function create( 
         string _name, 
