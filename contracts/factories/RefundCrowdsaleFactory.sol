@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import "./../tokens/ERC20MintableToken.sol";
+import "./../tokens/ERC223MintableToken.sol";
 import "./../MainFabric.sol";
 import "./BaseFactory.sol";
 import "./../crowdsale/RefundCrowdsale.sol";
@@ -66,7 +66,7 @@ contract RefundCrowdsaleFactory is BaseFactory {
         uint256 _closingTime
     ) public returns (RefundCrowdsale) {
 
-        ERC20MintableToken newToken = new ERC20MintableToken(_name, _symbol, _decimals, address(this));
+        ERC223MintableToken newToken = new ERC223MintableToken(_name, _symbol, _decimals, address(this));
 
         RefundCrowdsale newCrowdsale = new RefundCrowdsale(
             _rate,
@@ -80,7 +80,7 @@ contract RefundCrowdsaleFactory is BaseFactory {
         newToken.transferOwnership(newCrowdsale);
 
         MainFabric fabric = MainFabric(mainFabricAddress);
-        fabric.addContract(address(newToken), msg.sender, 'ERC20MintableToken');
+        fabric.addContract(address(newToken), msg.sender, 'ERC223MintableToken');
         fabric.addContract(address(newCrowdsale), msg.sender, title);
 
         return newCrowdsale;

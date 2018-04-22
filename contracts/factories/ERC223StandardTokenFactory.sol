@@ -1,16 +1,16 @@
 pragma solidity ^0.4.21;
 
-import "./../tokens/ERC20StandardToken.sol";
+import "./../tokens/ERC223StandardToken.sol";
 import "./../MainFabric.sol";
 import "./BaseFactory.sol";
 
-contract ERC20StandardTokenFactory is BaseFactory {
+contract ERC223StandardTokenFactory is BaseFactory {
 
-    function ERC20StandardTokenFactory(address _mainFactory) public {
+    function ERC223StandardTokenFactory(address _mainFactory) public {
         require(_mainFactory != 0x0);
         mainFabricAddress = _mainFactory;
 
-        title = "ERC20StandardToken";
+        title = "ERC223StandardToken";
 
         params.push(Parameter({
             title: "Token name",
@@ -38,8 +38,8 @@ contract ERC20StandardTokenFactory is BaseFactory {
             }));
     }
 
-    function create(string _name, string _symbol, uint8 _decimals, address _owner, uint256 _totalSupply) public returns (ERC20StandardToken) {
-        ERC20StandardToken newContract = new ERC20StandardToken(_name, _symbol, _decimals, _owner, _totalSupply);
+    function create(string _name, string _symbol, uint8 _decimals, address _owner, uint256 _totalSupply) public returns (ERC223StandardToken) {
+        ERC223StandardToken newContract = new ERC223StandardToken(_name, _symbol, _decimals, _owner, _totalSupply);
 
         MainFabric fabric = MainFabric(mainFabricAddress);
         fabric.addContract(address(newContract), msg.sender, title);
