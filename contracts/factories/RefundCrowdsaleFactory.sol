@@ -40,17 +40,7 @@ contract RefundCrowdsaleFactory is BaseFactory {
         }));
 
         params.push(Parameter({
-            title: "Owner address",
-            paramType: "address"
-        }));
-
-        params.push(Parameter({
-            title: "Goal",
-            paramType: "uint256"
-        }));
-
-        params.push(Parameter({
-            title: "Cap",
+            title: "Hard cap in ETH",
             paramType: "uint256"
         }));
 
@@ -71,8 +61,6 @@ contract RefundCrowdsaleFactory is BaseFactory {
         uint8 _decimals,
         uint256 _rate,
         address _wallet,
-        address _owner,
-        uint256 _goal,
         uint256 _cap,
         uint256 _openingTime,
         uint256 _closingTime
@@ -84,17 +72,12 @@ contract RefundCrowdsaleFactory is BaseFactory {
             _rate,
             _wallet,
             ERC20(newToken),
-            _owner
-        );
-
-        newToken.transferOwnership(newCrowdsale);
-
-        newCrowdsale.setParams(
-            _goal,
             _cap,
             _openingTime,
             _closingTime
         );
+
+        newToken.transferOwnership(newCrowdsale);
 
         MainFabric fabric = MainFabric(mainFabricAddress);
         fabric.addContract(address(newToken), msg.sender, 'ERC20MintableToken');

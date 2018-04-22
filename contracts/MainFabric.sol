@@ -28,7 +28,7 @@ contract MainFabric is Ownable {
 
     struct Admin {
         address addr;
-        uint256[] contratcs;
+        address[] contratcs;
         uint256 numContratcs;
         uint256 index;
     }
@@ -67,6 +67,14 @@ contract MainFabric is Ownable {
      */
     function numAdmins() public view returns (uint256)
     { return adminsAddr.length; }
+
+    function getAdminContract(address _adminAddress, uint256 _index) public view returns (
+        address
+    ) {
+        return (
+            admins[_adminAddress].contratcs[_index]
+        );
+    }
 
     // ---====== FABRICS ======---
     /**
@@ -158,14 +166,14 @@ contract MainFabric is Ownable {
         contracts[_address].owner = _owner;
         contracts[_address].fabric = msg.sender;
         contracts[_address].contractType = _contractType;
-        contracts[_address].index = fabricsAddr.push(_address) - 1;
+        contracts[_address].index = contractsAddr.push(_address) - 1;
 
         if (admins[_owner].addr != _owner) {
             admins[_owner].addr = _owner;
             admins[_owner].index = adminsAddr.push(_owner) - 1;
         }
 
-        admins[_owner].contratcs.push(contracts[_address].index);
+        admins[_owner].contratcs.push(contracts[_address].addr);
         admins[_owner].numContratcs++;
 
         return true;
